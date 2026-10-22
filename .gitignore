@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.env
+data/
+*.db
+.DS_Store
+Assignment_02_FSPM_9C.pdf
+submission/

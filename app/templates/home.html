@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>One place for freelance work.</h1>
+  <p class="lede">Clients post a project, set a budget, and split the work into milestones. Freelancers see published projects and follow the agreed stages. Messages, tasks, and invoices are planned next. This version does not move money.</p>
+  {% if not user %}
+    <a class="button" href="/register">Create an account</a>
+  {% else %}
+    <a class="button" href="/dashboard">Open your dashboard</a>
+  {% endif %}
+{% endblock %}
