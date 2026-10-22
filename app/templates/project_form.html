@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Post a project</h1>
+  <p class="muted">A draft stays private. A published project is visible to freelancers.</p>
+  {% if errors.form %}<p class="error">{{ errors.form }}</p>{% endif %}
+  <form class="card" method="post" action="/projects">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Title
+      <input name="title" value="{{ form.title }}" required maxlength="120">
+    </label>
+    {% if errors.title %}<p class="error">{{ errors.title }}</p>{% endif %}
+    <label>Scope
+      <textarea name="description" rows="5" required>{{ form.description }}</textarea>
+    </label>
+    {% if errors.description %}<p class="error">{{ errors.description }}</p>{% endif %}
+    <label>Budget
+      <input name="budget" value="{{ form.budget }}" inputmode="decimal" required>
+    </label>
+    {% if errors.budget %}<p class="error">{{ errors.budget }}</p>{% endif %}
+    <label>Deadline
+      <input name="deadline" type="date" value="{{ form.deadline }}" required>
+    </label>
+    {% if errors.deadline %}<p class="error">{{ errors.deadline }}</p>{% endif %}
+    <fieldset>
+      <legend>Visibility</legend>
+      <div class="choices">
+        <label><input type="radio" name="status" value="draft" {% if form.status == "draft" %}checked{% endif %}> Save as draft</label>
+        <label><input type="radio" name="status" value="published" {% if form.status == "published" %}checked{% endif %}> Publish</label>
+      </div>
+    </fieldset>
+    {% if errors.status %}<p class="error">{{ errors.status }}</p>{% endif %}
+    <button type="submit">Save project</button>
+  </form>
+{% endblock %}
