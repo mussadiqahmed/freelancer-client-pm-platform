@@ -5,7 +5,7 @@ from app.deps import csrf_is_valid, current_user, get_connection
 from app.formatting import project_view
 from app.repository import find_user_by_email, list_projects_for_user
 from app.routers.home import render
-from app.security import verify_password
+from app.security import new_csrf_token, unknown_user_hash, verify_password
 from app.validation import clean, login_errors
 
 router = APIRouter()
@@ -40,11 +40,17 @@ def login(
 
     errors = login_errors(form["email"], password)
     user = find_user_by_email(connection, form["email"]) if not errors else None
-    if errors or user is None or not verify_password(password, user["password_hash"]):
-        if not errors:
+    if not errors:
+        stored_hash = user["password_hash"] if user is not None else unknown_user_hash()
+        password_matches = verify_password(password, stored_hash)
+        if user is None or not password_matches:
             errors = {"form": "The email or password is incorrect."}
+    if errors:
         return render(request, "login.html", connection, title="Log in", errors=errors, form=form, notice="")
 
+    # The pre-login cookie must not become the authenticated session.
+    request.session.clear()
+    request.session["csrf"] = new_csrf_token()
     request.session["user_id"] = user["id"]
     return RedirectResponse("/dashboard", status_code=303)
 

@@ -46,7 +46,7 @@ Invoices in this project only record a request. They do not transfer money.
 - SQLite
 - pytest
 
-Passwords are stored with PBKDF2-HMAC-SHA256. Sessions use a signed cookie. Forms send a CSRF token. The database is a local SQLite file.
+Passwords are stored with PBKDF2-HMAC-SHA256. Sessions use a signed cookie. A successful login clears that session and issues a new CSRF token. An unknown email still runs one password-hash check, so it is not obviously faster than a wrong password. Forms send a CSRF token. The database is a local SQLite file.
 
 ## Repository structure
 
