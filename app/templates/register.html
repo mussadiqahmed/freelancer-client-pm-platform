@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Create an account</h1>
+  <p class="muted">Choose client if you are hiring, or freelancer if you are doing the work.</p>
+  {% if errors.form %}<p class="error">{{ errors.form }}</p>{% endif %}
+  <form class="card" method="post" action="/register">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <label>Name
+      <input name="name" value="{{ form.name }}" required maxlength="80">
+    </label>
+    {% if errors.name %}<p class="error">{{ errors.name }}</p>{% endif %}
+    <label>Email
+      <input name="email" type="email" value="{{ form.email }}" required>
+    </label>
+    {% if errors.email %}<p class="error">{{ errors.email }}</p>{% endif %}
+    <label>Password
+      <input name="password" type="password" required minlength="8">
+    </label>
+    {% if errors.password %}<p class="error">{{ errors.password }}</p>{% endif %}
+    <fieldset>
+      <legend>Account type</legend>
+      <div class="choices">
+        <label><input type="radio" name="role" value="freelancer" {% if form.role == "freelancer" %}checked{% endif %}> Freelancer</label>
+        <label><input type="radio" name="role" value="client" {% if form.role == "client" %}checked{% endif %}> Client</label>
+      </div>
+    </fieldset>
+    {% if errors.role %}<p class="error">{{ errors.role }}</p>{% endif %}
+    <button type="submit">Register</button>
+  </form>
+{% endblock %}
