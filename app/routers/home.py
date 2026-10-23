@@ -21,7 +21,8 @@ def render(request: Request, name: str, connection, status_code: int = 200, **co
 
 @router.get("/", response_class=HTMLResponse)
 def home(request: Request, connection=Depends(get_connection)):
-    return render(request, "home.html", connection, title="Home")
+    notice = "Account created. You can log in now." if request.query_params.get("registered") else ""
+    return render(request, "home.html", connection, title="Home", notice=notice)
 
 
 @router.get("/health")
