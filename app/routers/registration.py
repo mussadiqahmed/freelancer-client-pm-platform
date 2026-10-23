@@ -47,4 +47,4 @@ def register_account(
     if created is None:
         errors = {"email": "That email is already registered."}
         return render(request, "register.html", connection, title="Register", errors=errors, form=form)
-    return RedirectResponse("/login?registered=1", status_code=303)
+    return RedirectResponse("/?registered=1", status_code=303)

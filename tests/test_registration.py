@@ -7,9 +7,9 @@ def test_register_creates_hashed_account_and_confirms(tmp_path):
     client = make_client(tmp_path)
     response = register(client)
     assert response.status_code == 303
-    assert response.headers["location"] == "/login?registered=1"
-    login_page = client.get("/login?registered=1")
-    assert "Account created" in login_page.text
+    assert response.headers["location"] == "/?registered=1"
+    home_page = client.get("/?registered=1")
+    assert "Account created" in home_page.text
 
     connection = sqlite3.connect(tmp_path / "test.db")
     row = connection.execute("SELECT email, password_hash, role FROM users").fetchone()
