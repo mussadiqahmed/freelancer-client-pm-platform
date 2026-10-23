@@ -17,18 +17,14 @@ Freelance work is often split across email, chat apps, and spreadsheets. Scope, 
 
 ## What works now
 
-The shared `main` branch contains the application shell: database setup, password hashing, page layout, and the health check.
+`main` contains registration, login, project posting, and milestones. Pull requests 1, 2, 3, and 4 were merged into `main` on 23 October 2026.
 
-These stories are implemented on their own branches and are waiting for review before they are merged:
-
-| Story | Branch | What it does |
-| --- | --- | --- |
-| FCPP-5 | `FCPP-5-user-registration` | Register as a freelancer or a client |
-| FCPP-6 | `FCPP-6-user-login` | Log in with a salted password check |
-| FCPP-7 | `FCPP-7-post-project` | Post a draft or published project |
-| FCPP-8 | `FCPP-8-project-milestones` | Add milestones to a project you own |
-
-Until those pull requests are merged, `main` does not serve registration, login, projects, or milestones.
+| Story | Branch | Pull request | What it does |
+| --- | --- | --- | --- |
+| FCPP-5 | `FCPP-5-user-registration` | [#1](https://github.com/mussadiqahmed/freelancer-client-pm-platform/pull/1) | Register as a freelancer or a client |
+| FCPP-6 | `FCPP-6-user-login` | [#2](https://github.com/mussadiqahmed/freelancer-client-pm-platform/pull/2) | Log in with a salted password check |
+| FCPP-7 | `FCPP-7-post-project` | [#3](https://github.com/mussadiqahmed/freelancer-client-pm-platform/pull/3) | Post a draft or published project |
+| FCPP-8 | `FCPP-8-project-milestones` | [#4](https://github.com/mussadiqahmed/freelancer-client-pm-platform/pull/4) | Add milestones to a project you own |
 
 ## Planned, not built
 
@@ -87,8 +83,8 @@ python -m pytest
 
 ## Group
 
-- Ahmed Mussadiq — project manager and backend. Jira account: Ahmed Mussadiq.
-- Awais Qarni — frontend and QA. The Jira account already used for Awais's stories is displayed as **owais shahid**. Student IDs are not recorded yet.
+- Ahmed Mussadiq, project manager and backend. Jira account: Ahmed Mussadiq. GitHub: mussadiqahmed.
+- Muhammad Owais Qarni (Awais). GitHub: mowaisqarni. The Jira account used for his stories is displayed as owais shahid. Student IDs are not recorded yet.
 
 ## Development workflow
 
