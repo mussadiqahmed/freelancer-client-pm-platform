@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Dashboard</h1>
+  <p class="muted">Signed in as {{ user.name }} ({{ user.role }}).</p>
+  {% if user.role == "client" %}
+    <a class="button" href="/projects/new">Post a project</a>
+    <h2>Your projects</h2>
+  {% else %}
+    <h2>Published projects</h2>
+  {% endif %}
+  {% if projects %}
+    {% for project in projects %}
+      <a class="card project-link" href="/projects/{{ project.id }}">
+        <span class="badge {{ project.status }}">{{ project.status }}</span>
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.budget }} · due {{ project.deadline }}</p>
+      </a>
+    {% endfor %}
+  {% else %}
+    <p class="muted">Nothing here yet.</p>
+  {% endif %}
+{% endblock %}

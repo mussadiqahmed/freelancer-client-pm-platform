@@ -22,3 +22,11 @@ def verify_password(password: str, stored: str) -> bool:
 
 def new_csrf_token() -> str:
     return secrets.token_urlsafe(32)
+
+
+# Computed once so an unknown email pays for one verification, not a second hash.
+_UNKNOWN_USER_HASH = hash_password("unknown-user-timing-pad")
+
+
+def unknown_user_hash() -> str:
+    return _UNKNOWN_USER_HASH
